@@ -1,22 +1,42 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-#include <vector>
+#include <list>
+
+#define MAXNUM 3000
 
 using namespace std;
 
 void GeneratorFunc(string str);
 
-vector<int> temp;
+list<int> temp;
+
 int main()
 {
-	GeneratorFunc("1");
-	
-	for (int i = 0; i < temp.size(); i++)
+	int final_result = 0;
+
+	for (int i = 1; i < MAXNUM; i++)
 	{
-		cout << temp[i] << " ";
+		temp.push_back(i);
 	}
-	
+	list<int>::iterator iterPos = temp.begin();
+	list<int>::iterator iterEnd = temp.end();
+
+	for (; iterPos != iterEnd; iterPos++)   
+	{
+		stringstream sstr;
+		sstr << *iterPos;
+		GeneratorFunc(sstr.str());
+		iterEnd = temp.end();                     // change end_Pos
+	}
+
+	iterPos = temp.begin();                       // initial begin_Pos
+	for (; iterPos != iterEnd; iterPos++)
+	{
+		final_result += *iterPos;
+	}
+
+	cout << final_result << endl;
 	return 0;
 }
 
@@ -25,18 +45,17 @@ void GeneratorFunc(string str_num)
 	int sum = 0;
 	int result;
 
-	stringstream sstr;
-	for (int i = 0; i < str_num.size(); i++)
+	for (int i = 0; i < str_num.size(); i++)     // each sum
 	{
 		sum += (str_num.at(i) - '0');
 	}
+	result = sum + stoi(str_num);                // final data
 
-	result = sum + stoi(str_num);
-	if (result < 5000)
+	if (result < MAXNUM)
 	{
-		temp.push_back(result);
+		stringstream sstr;
+		temp.remove(result);
 		sstr << result;
-		GeneratorFunc(sstr.str());
+		GeneratorFunc(sstr.str());               // change to str and recursive
 	}
-
 }
