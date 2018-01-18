@@ -3,7 +3,7 @@
 #include <sstream>
 #include <list>
 
-#define MAXNUM 3000
+#define MAXNUM 5000
 
 using namespace std;
 
