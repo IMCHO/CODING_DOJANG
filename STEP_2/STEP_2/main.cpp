@@ -17,7 +17,7 @@ int main()
 		matrix[i] = new int[column];
 	
 	for (int i = 0; i < row; i++) 
-		for (int j = 0; j < column; j++) matrix[i][j] = { -1, };
+		for (int j = 0; j < column; j++) matrix[i][j] = -1;
 
 	while (!CheckMatrix(matrix, row, column))
 	{
@@ -63,6 +63,15 @@ int main()
 		}
 	}
 
+	for (int i = 0; i < row; i++)
+	{
+		for (int j = 0; j < column; j++)
+		{
+			cout << matrix[i][j] << " ";
+		}
+		cout << endl;
+	}
+	
 
 	return 0;
 }
@@ -72,6 +81,7 @@ bool CheckMatrix(int * _matrix[], int _row, int _column)
 	for (int i = 0; i < _row; i++)
 		for (int j = 0; j < _column; j++)
 		{
-			if (_matrix[_row][_column] == -1) return false;
+			if (_matrix[i][j] == -1) return false;
 		}
+	return true;
 }
