@@ -23,43 +23,79 @@ int main()
 	{
 		if (level == 1)
 		{
-			while (rtemp < row && ctemp < column && matrix[rtemp][ctemp] == -1)
+			while (rtemp < row && ctemp < column)
 			{
-				matrix[rtemp][ctemp] = num;
-				num++;
-				ctemp++;
-				level = 2;
+				if (matrix[rtemp][ctemp] != -1)
+				{
+					ctemp++;
+					continue;
+				}
+				else
+				{
+					matrix[rtemp][ctemp] = num;
+					num++;
+					ctemp++;
+				}
 			}
+			level = 2;
+			ctemp-=2;
 		}
 		else if (level == 2)
 		{
-			while (rtemp < row && ctemp < column && matrix[rtemp][ctemp] == -1)
+			while (rtemp < row && ctemp < column)
 			{
-				matrix[rtemp][ctemp] = num;
-				num++;
-				rtemp++;
-				level = 3;
+				if (matrix[rtemp][ctemp] != -1)
+				{
+					rtemp++;
+					continue;
+				}
+				else
+				{
+					matrix[rtemp][ctemp] = num;
+					num++;
+					rtemp++;
+				}
 			}
+			level = 3;
+			rtemp-=2;
 		}
 		else if (level == 3)
 		{
-			while (rtemp < row && ctemp < column && matrix[rtemp][ctemp] == -1)
+			while (rtemp >=0 && ctemp >= 0)
 			{
-				matrix[rtemp][ctemp] = num;
-				num++;
-				ctemp--;
-				level = 4;
+				if (matrix[rtemp][ctemp] != -1)
+				{
+					ctemp--;
+					continue;
+				}
+				else
+				{
+					matrix[rtemp][ctemp] = num;
+					num++;
+					ctemp--;
+				}
 			}
+			level = 4;
+			ctemp+=2;
 		}
 		else if (level == 4)
 		{
-			while (rtemp < row && ctemp < column && matrix[rtemp][ctemp] == -1)
+			while (rtemp >= 0 && ctemp >= 0)
 			{
-				matrix[rtemp][ctemp] = num;
-				num++;
-				rtemp--;
-				level = 1;
+				if (matrix[rtemp][ctemp] != -1)
+				{
+					rtemp--;
+					continue;
+				}
+				else
+				{
+					matrix[rtemp][ctemp] = num;
+					num++;
+					rtemp--;
+				}
 			}
+			level = 1;
+			rtemp+=2;
 		}
 	}
 
